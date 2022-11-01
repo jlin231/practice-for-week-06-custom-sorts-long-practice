@@ -7,65 +7,71 @@ function ageSort(users) {
     res.push(users[i].age);
   }
   res.sort();
-  let output = []
+  let output = [];
   for (let i = 0; i < res.length; i++) {
-    output.push(users[count[res[i]]])
+    output.push(users[count[res[i]]]);
   }
-  console.log(output)
+
   return output;
+
+  //users.sort((a, b) => a.age - b.age)
 }
 
 function oddEvenSort(arr) {
-  // Your code here
+  arr.sort((a, b) => {
+    if (a % 2 === 1 && b % 2 === 0) return -1;
+
+    if (a % 2 === 0 && b % 2 === 1) return 1;
+
+    return a - b;
+  });
+
+  return arr;
 }
 
 function validAnagrams(s, t) {
-  // Your code here
+  if (s.length !== t.length) return false;
+  let sSplit = s.split("");
+  let tSplit = t.split("");
+  let str1 = sSplit.sort().join("");
+  let str2 = tSplit.sort().join("");
+
+  if (str1 === str2) return true;
+  else return false;
 }
 
 function reverseBaseSort(arr) {
-  // Your code here
+  arr.sort((a, b) => {
+    if (String(a).length > String(b).length) {
+      return -1;
+    }
+    if (String(a).length < String(b).length) {
+      return 1;
+    }
+    return a - b;
+  });
+  return arr;
 }
 
 function frequencySort(arr) {
-  // Your code here
+  let count = {};
+
+  arr.forEach((el) => {
+    if (count[el] === undefined) count[el] = 1;
+    else count[el]++;
+  });
+
+  arr.sort((a, b) => {
+    if (count[a] > count[b]) {
+      return 1;
+    }
+    if (count[a] < count[b]) {
+      return -1;
+    }
+    return b - a;
+  });
+  return arr;
 }
-
-// const users = [
-//   {
-//     id: 1,
-//     firstName: "John",
-//     lastName: "Doe",
-//     age: 30,
-//     occupation: "Software Engineer",
-//     friends: [2, 3, 4],
-//   },
-//   {
-//     id: 2,
-//     firstName: "Jane",
-//     lastName: "Doe",
-//     age: 25,
-//     occupation: "Data Scientist",
-//     friends: [1, 4],
-//   },
-//   {
-//     id: 3,
-//     firstName: "Mary",
-//     lastName: "Smith",
-//     age: 32,
-//     occupation: "UX Designer",
-//     friends: [2, 4],
-//   },
-//   {
-//     id: 4,
-//     firstName: "James",
-//     lastName: "Johnson",
-//     age: 55,
-//     occupation: "CTO",
-//     friends: [1, 2, 3],
-//   },
-// ];
-
 
 module.exports = [
   oddEvenSort,
